@@ -263,7 +263,7 @@
 
                 <div class="r-stack">
                     <div class="fragment fade-in-then-out">
-                        <p>Navigation interne</p>
+                        <p>Navigation interne (cd - cd .. - ls)</p>
                         <img src="./media/condaterm1.png" alt="">
                     </div>
 
@@ -368,6 +368,10 @@
                 y = func
                 y(10)
                 >>> "10"
+
+                # donc notre fonction est considerée comme 
+                # un "first-class citizen"
+                # nous ouvrant le chemin pour plein de choses utiles
                     </code></pre>
             </section>
 
@@ -760,6 +764,8 @@
                     def all_user_accounts(self):
                         # do something insanely LONG and HORRIBLE...
                         return result
+
+
 
                     </code></pre>
             </section>
@@ -1209,6 +1215,28 @@
                     result = operation(left, right)
 
                     print(f"{left} {op_str} {right} = {result}")
+                    </code></pre>
+            </section>
+
+
+            <section>
+            <h3>Expression ternaire</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers=''>
+        
+                # Expression "simple"...
+                age = 37
+                if age >= 18:
+                    print("la personne est majeure")
+                else:
+                    print("la personne est mineure")
+
+                # expression ternaire...
+                state = 'majeure' if age >= 18 else 'mineure'
+                print(f"la personne est {state}")
+
+                # Permet de faire un test rapide sur 
+                # une condition simple...
+
                     </code></pre>
             </section>
 
