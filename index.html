@@ -1244,6 +1244,192 @@
 
         </section>
 
+
+        <section>
+
+            <section>
+
+                <p>Structures avancees</p>
+            </section>
+
+
+            <section>
+            <h3>Tuples</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-8|10-21|23-35|37-43'>
+        
+                # Tuples sont des objets IMMUTABLES 
+                # Donc Memory-safe et plus rapides
+                >>> film = ("Good Will Hunting", "Robin Williams", 
+                        "Matt Damon", "Ben Affleck", 1997)
+
+                # les tuples sont ITERABLES et INDEXABLES
+                >>> film[0]
+                "Good Will Hunting"
+
+                # ... peuvent etre decomposées dans variables separees
+                name, actor1, actor2, actor3, year = film
+
+                # mais aussi mettre les parties dans des lists..
+                name, *actors, year = film
+
+                # quand une valeur ne nous importe pas...
+                name, *actors, _ = film
+
+                # quand une fonction retourne plusieurs valeurs,
+                # python les met dans un tuple.
+                name, *actors, _ = get_random_film()
+
+                # ====== TUPLES NOMMEES ======
+                >>> from collections import namedtuple
+                >>> Student = namedtuple("Student", [
+                    "first_name",
+                    "last_name",
+                    "school"
+                ])
+
+                >>> s1 = Student(
+                    first_name="Sergey", 
+                    last_name="Platonov",
+                    school="Nomades"
+                )
+
+                # tuples nommes nous permettent d'avoir:
+                    # liaisons clé - valeur (comme dictionnaires)
+                    # indexation et itération (comme lists)
+                    # champs (comme classes)
+                    # immutabilité (comme tuples)
+
+                # elles forment donc un type hyper versatil
+                    </code></pre>
+            </section>
+
+
+            <section>
+            <h3>Dictionnaires</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-11|13-18|20-30|32-38|40-51'>
+        
+                # dictionnaires dont des structures
+                # de donnes avec les proprietés suivantes:
+                    # jeux de clé-valeur
+                    # garantie d'unicité de clés
+                    # rapidité de lookup (voir hashtable)
+
+                >>> my_dict = {
+                    "key_a" : "val_a",
+                    "key_b" : "val_b",
+                    "key_c" : "val_c",
+                }
+
+                # elles ne sont donc pas indexables ni iterables
+                # comme les tuples nommes.
+                # Leur but principal est d'assurer une valeur de clé
+                # unique...
+                >>> my_dict["key_c"]
+                "val_c"
+
+                # ajouter un nouveau item unique...
+                >>> my_dict["key_x"] = "val_x"
+
+                # ATTENTION:
+                #   ajour d'élément avec le meme clé 
+                #   va overrride l'élément
+                >>> my_dict["key_a"] = "another a value"
+
+                # prendre tous les clés...
+                >>> my_dict.keys()
+                dict_keys(["key_a", "key_b", "key_c"])
+
+                # prendre tous les items...
+                >>> my_dict.items()
+                dict_items([("key_a", "val_a"), (...), (...)])
+
+                # prendre toutes les valeurs
+                >>> my_dict.values()
+                dict_values([..., ..., ...])
+
+                # les dictionaires peuvent être crées...
+                >>> my_dict = {
+                    "key_a" : "val_a",
+                }
+
+                >>> my_dict = dict([("key_a", "val_a")])
+
+                >>> my_dict = dict(key_a="val_a", ...)
+
+                # mais aussi avec Dict Comprehensions...
+                >>> my_dict = {x : x**2 for x in (0, 1, 2, 3)}
+                {0: 0, 1: 1, 2: 4, 3: 9}
+
+                    </code></pre>
+            </section>
+
+
+            <section>
+            <h3>Iterateurs</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers='1-14|20-27|29-40|42-54'>
+        
+                # pour des raisons de memoire et performance
+                # certaines fonctions retournent des ITERATEURS...
+
+                # appliquer my_func à chaque element dans la collection..
+                >>> map(my_func, [0, 1, 2, 3])
+                map object
+
+                # avoir un iterateur de 0 à 9...
+                >>> range(10)
+                range object
+
+                # filtrer les valeurs dans une collection...
+                >>> filter(lambda x : x % 2 == 0, [0, 1, 2, 3, 4, 5])
+                filter object
+
+                # Ces elements-là sont des iterateurs intermediaires
+                # qui nous permettent de les utiliser par la suite
+                #  et enchainer des operations...
+
+                # Enchainement: 
+                map(operation, iterator1, ..., iteratorN) -> iterator
+
+                >>> r = reversed(0, 1, 2, 3, 4)
+                >>> m = map(pow, r, range(10))
+                >>> list(m)
+                [1, 3, 4, 1, 0]
+
+
+                # EXEMPLE:
+                >>> def myfunc(a, b):
+                ...     return a + b
+
+                >>> m = map(myfunc, [0, 1, 2, 3])
+                >>> # PAS D'ERREUR!
+                >>> list(m)
+                TypeError: missing 1 required positional argument 'b'
+
+                # Donc on voit que MAP effectue uniquement les liens
+                # en preparant le contenu à la sortie...
+                # ceci est la definition d'un iterateur
+
+                # Le mapping devient "concret", quand:
+                >>> list(m)
+                # OU
+                >>> m.__next__()
+
+                # Les itérateurs importants:
+                map(func, *collections)
+                reversed(collection)
+                zip(*collections)
+                filter(predicate, collection)
+
+                # comme c'est des "recettes", on ne peut pas les
+                # comparer directement... il faut de la logique en plus 
+
+
+
+                    </code></pre>
+            </section>
+
+        </section>
+
     </div>
     	</div>
         <script src="dist/reveal.js"></script>
