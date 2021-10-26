@@ -2113,6 +2113,71 @@
 
         </section>
 
+
+        <section>
+
+            <section>
+
+                <p>Flask</p>
+            </section>
+
+
+            <section>
+
+                <p><small>C'est quoi Flask?</small></p>
+
+                <ul>
+                    <li>MicroWebFramework ecrite en Python <ul>
+                        <li>pas de niveau d'abstraction de la base de données</li>
+                        <li>legère</li>
+                        <li>plein de sous-librairies intégrables -> flexible</li>
+                    </ul></li>
+                </ul>
+
+                <ul>
+                    <li>rapide à apprendre</li>
+                    <li>flexible</li>
+                    <li>puissant</li>
+                </ul>
+            </section>
+
+
+            <section>
+
+                <p><small>Qui utilise Flask?</small></p>
+
+                <ul>
+                    <li>Netflix</li>
+                    <li>Reddit</li>
+                    <li>AirBnB</li>
+                    <li>Lyft</li>
+                    <li>Mozilla</li>
+                    <li>Uber</li>
+                </ul>
+            </section>
+
+
+            <section>
+            <h3>mise en place serveur flask basique</h3>
+            <pre><code class='language-python' data-trim data-noescape                     data-line-numbers=''>
+        
+                # on import le module flask...
+                import flask
+
+                # annonce de la variable globale de l'application
+                app = flask.Flask(__name__)
+
+                @app.route('/')
+                def home():
+                    print("notre première route est definie")
+
+                if __name__ == '__main__':
+                    app.run(debug=True)
+                    </code></pre>
+            </section>
+
+        </section>
+
     </div>
     	</div>
         <script src="dist/reveal.js"></script>
